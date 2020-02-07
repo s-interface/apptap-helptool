@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <provider
-            android:name="fu.berlin.apptap_helptool.InitProvider"
-            android:authorities="fu.berlin.apptap_helptool.InitProvider"
+            android:name="fu.berlin.apptap_helptool.provider.InitProvider"
+            android:authorities="fu.berlin.apptap_helptool.provider.InitProvider"
             android:enabled="true"
             android:exported="false" />
 

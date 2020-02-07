@@ -6,52 +6,38 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-public class EventTapHelper {
+public class AppTapHelper {
 
     private static final Uri CONTENT_URI = Uri.parse("content://fu.berlin.apptap.eventreceiverprovider/call");
 
-    private static EventTapHelper INSTANCE;
+    private static AppTapHelper INSTANCE;
 
     private final Context context;
 
     private AsyncTask task = null;
 
-    private EventTapHelper(Context context) {
+    private AppTapHelper(Context context) {
         this.context = context.getApplicationContext();
     }
 
-    private static EventTapHelper getInstance() {
+    private static AppTapHelper getInstance() {
         if (INSTANCE == null) {
             throw new IllegalStateException();
         }
         return INSTANCE;
     }
 
-    static void init(Context context) {
+    public static void init(Context context) {
         if (INSTANCE == null) {
-            INSTANCE = new EventTapHelper(context);
+            INSTANCE = new AppTapHelper(context);
         }
-
     }
 
-    private void sendEvent(Bundle bundle) {
-        task = new callProviderTask(context).execute(bundle);
+    public static void captureMethodArguments(String string1, String string2, long j_long, Bundle bundle, boolean bool1, boolean bool2, boolean bool3, String string3) {
+        getInstance().sendEventObjects(string1, string2, j_long, bundle, bool1, bool2, bool3, string3);
     }
 
-    private void sendEvent(Bundle bundle, String... strings) {
-        for (int i = 0; i < strings.length; i++) {
-            String key = "extra_event_string_" + i;
-            String value = strings[i];
-            bundle.putString(key, value);
-        }
-        task = new callProviderTask(context).execute(bundle);
-    }
-
-    public void sendEvent(Bundle bundle, long j_long, String string1, String string2, String string3) {
-        sendEvent(bundle, Long.valueOf(j_long).toString(), string1, string2, string3);
-    }
-
-    public static void sendEventObjects(Object... objects) {
+    public void sendEventObjects(Object... objects) {
         Bundle bundle = new Bundle();
         int index = 0;
 
@@ -69,7 +55,11 @@ public class EventTapHelper {
                 bundle.putString("object_" + index++, "unknown Class: " + object.getClass().toString() + "; string representation: " + object.toString());
             }
         }
-        getInstance().sendEvent(bundle);
+        sendEvent(bundle);
+    }
+
+    private void sendEvent(Bundle bundle) {
+        task = new callProviderTask(context).execute(bundle);
     }
 
     private static class callProviderTask extends AsyncTask<Bundle, Void, Void> {

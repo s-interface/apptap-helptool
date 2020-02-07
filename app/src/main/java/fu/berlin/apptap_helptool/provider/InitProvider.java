@@ -1,9 +1,11 @@
-package fu.berlin.apptap_helptool;
+package fu.berlin.apptap_helptool.provider;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
+
+import fu.berlin.apptap_helptool.AppTapHelper;
 
 public class InitProvider extends ContentProvider {
     public InitProvider() {
@@ -11,7 +13,7 @@ public class InitProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        EventTapHelper.init(getContext());
+        AppTapHelper.init(getContext());
         return false;
     }
 

@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import fu.berlin.apptap_helptool.extra.SmaliCodeClass;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
      * called by button click in testtool GUI
      * <p>
      * send a test event through SmaliCodeClass to emulate calling of the hook method and sending an
-     * event with the help of EventTapHelper
+     * event with the help of AppTapHelper
      */
     private void sendEvent() {
         long currentTime = System.currentTimeMillis();
         SmaliCodeClass smaliClass = new SmaliCodeClass();
         Bundle bundle = new Bundle();
         bundle.putString("key_string", "value_string");
-        smaliClass.hookMethod("first_string", "second_string", currentTime, bundle, true, true, true, "third_string");
+        smaliClass.targetMethod("first_string", "second_string", currentTime, bundle, true, true, true, "third_string");
     }
 }
