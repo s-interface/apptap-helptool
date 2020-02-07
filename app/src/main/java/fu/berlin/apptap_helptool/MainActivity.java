@@ -48,6 +48,6 @@ public class MainActivity extends AppCompatActivity {
         SmaliCodeClass smaliClass = new SmaliCodeClass();
         Bundle bundle = new Bundle();
         bundle.putString("key_string", "value_string");
-        smaliClass.targetMethod("first_string", "second_string", currentTime, bundle, true, true, true, "third_string");
+        smaliClass.targetMethod_01("first_string", "second_string", currentTime, bundle, true, true, true, "third_string");
     }
 }

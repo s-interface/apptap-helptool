@@ -17,7 +17,11 @@ public class SmaliCodeClass {
      * Use AppTapHelper to pass on the arguments
      *
      */
-    public void targetMethod(String string1, String string2, long j_long, Bundle bundle, boolean bool1, boolean bool2, boolean bool3, String string3) {
+    public void targetMethod_01(String string1, String string2, long j_long, Bundle bundle, boolean bool1, boolean bool2, boolean bool3, String string3) {
         AppTapHelper.captureMethodArguments(string1, string2, j_long, bundle, bool1, bool2, bool3, string3);
+    }
+
+    public void targetMethod_02(String string1, String string2, long j_long, Bundle bundle, boolean bool1, boolean bool2, boolean bool3, String string3) {
+        AppTapHelper.idMethod(string1, string2, j_long, bundle, "method_name");
     }
 }

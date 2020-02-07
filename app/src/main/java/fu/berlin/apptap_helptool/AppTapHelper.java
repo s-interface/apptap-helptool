@@ -37,13 +37,26 @@ public class AppTapHelper {
         getInstance().sendEventObjects(string1, string2, j_long, bundle, bool1, bool2, bool3, string3);
     }
 
+    public static void idMethod(String string1, String string2, long j_long, Bundle bundle, String method_name) {
+        Bundle sendBundle = new Bundle();
+        sendBundle.putString("call_method", method_name);
+        sendBundle.putString("str_1",string1);
+        sendBundle.putString("str_2", string2);
+        sendBundle.putLong("long", j_long);
+        sendBundle.putBundle("bundle_arg", bundle);
+
+        getInstance().sendEvent(sendBundle);
+    }
+
     public void sendEventObjects(Object... objects) {
         Bundle bundle = new Bundle();
         int index = 0;
 
         for (Object object : objects
         ) {
-            if (object instanceof String) {
+            if (object == null) {
+                bundle.putString("object_" + index++, "null");
+            } else if (object instanceof String) {
                 bundle.putString("object_" + index++, (String) object);
             } else if (object instanceof Long) {
                 bundle.putLong("object_" + index++, (Long) object);
