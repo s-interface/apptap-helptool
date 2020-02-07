@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='apptap-testtool'
+rootProject.name='apptap-helptool'
