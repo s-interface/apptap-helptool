@@ -1,4 +1,4 @@
-package fu.berlin.apptap_testtool;
+package fu.berlin.apptap_helptool;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package fu.berlin.apptap_testtool;
+package fu.berlin.apptap_helptool;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("fu.berlin.apptap_testtool", appContext.getPackageName());
+        assertEquals("fu.berlin.apptap_helptool", appContext.getPackageName());
     }
 }
