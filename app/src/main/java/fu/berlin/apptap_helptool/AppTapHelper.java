@@ -39,6 +39,12 @@ public class AppTapHelper {
 
     public static void idMethod(String string1, String string2, long j_long, Bundle bundle, String method_name) {
         Bundle sendBundle = new Bundle();
+
+        // adding thread info
+        Thread t = Thread.currentThread();
+        sendBundle.putString("a_thread_info", t.getName() + ";" + t.getId());
+        // testing for unique bundle objects doesn't work like this
+//        sendBundle.putString("call_method", method_name + "(" + System.identityHashCode(bundle) + ")");
         sendBundle.putString("call_method", method_name);
         sendBundle.putString("str_1",string1);
         sendBundle.putString("str_2", string2);
@@ -86,6 +92,8 @@ public class AppTapHelper {
 
         @Override
         protected Void doInBackground(Bundle... bundles) {
+            // ToDo: write check if Uri is valid
+            // maybe resolver.getType(CONTENT_URI); can help
             resolver.call(CONTENT_URI, "send_bundle", "none", bundles[0]);
             return null;
         }
