@@ -9,15 +9,20 @@ import android.os.Bundle;
 public class AppTapHelper {
 
     private static final Uri CONTENT_URI = Uri.parse("content://fu.berlin.apptap.eventreceiverprovider/call");
+    private static final String BUNDLE_KEY_APP_ID = "app_id";
+    private static final String BUNDLE_KEY_EVENT_ORIGIN = "event_origin";
+    private static final String BUNDLE_KEY_EVENT_NAME = "event_name";
+    private static final String BUNDLE_KEY_EVENT_TIMESTAMP = "event_timestamp";
+    private static final String BUNDLE_KEY_BUNDLE_ARG = "bundle_arg";
 
     private static AppTapHelper INSTANCE;
 
     private final Context context;
-
-    private AsyncTask task = null;
+    private final String PACKAGE_NAME;
 
     private AppTapHelper(Context context) {
         this.context = context.getApplicationContext();
+        this.PACKAGE_NAME = context.getApplicationContext().getPackageName();
     }
 
     private static AppTapHelper getInstance() {
@@ -27,6 +32,10 @@ public class AppTapHelper {
         return INSTANCE;
     }
 
+    private static String getPackageName() {
+        return getInstance().PACKAGE_NAME;
+    }
+
     public static void init(Context context) {
         if (INSTANCE == null) {
             INSTANCE = new AppTapHelper(context);
@@ -34,22 +43,17 @@ public class AppTapHelper {
     }
 
     public static void captureMethodArguments(String string1, String string2, long j_long, Bundle bundle, boolean bool1, boolean bool2, boolean bool3, String string3) {
-        getInstance().sendEventObjects(string1, string2, j_long, bundle, bool1, bool2, bool3, string3);
-    }
-
-    public static void idMethod(String string1, String string2, long j_long, Bundle bundle, String method_name) {
         Bundle sendBundle = new Bundle();
 
-        // adding thread info
-        Thread t = Thread.currentThread();
-        sendBundle.putString("a_thread_info", t.getName() + ";" + t.getId());
-        // testing for unique bundle objects doesn't work like this
-//        sendBundle.putString("call_method", method_name + "(" + System.identityHashCode(bundle) + ")");
-        sendBundle.putString("call_method", method_name);
-        sendBundle.putString("str_1",string1);
-        sendBundle.putString("str_2", string2);
-        sendBundle.putLong("long", j_long);
-        sendBundle.putBundle("bundle_arg", bundle);
+        //adding thread info
+//        Thread t = Thread.currentThread();
+//        sendBundle.putString("a_thread_info", t.getName() + ";" + t.getId());
+
+        sendBundle.putString(BUNDLE_KEY_APP_ID, getPackageName());
+        sendBundle.putString(BUNDLE_KEY_EVENT_ORIGIN,string1);
+        sendBundle.putString(BUNDLE_KEY_EVENT_NAME, string2);
+        sendBundle.putLong(BUNDLE_KEY_EVENT_TIMESTAMP, j_long);
+        sendBundle.putBundle(BUNDLE_KEY_BUNDLE_ARG, bundle);
 
         getInstance().sendEvent(sendBundle);
     }
@@ -78,7 +82,7 @@ public class AppTapHelper {
     }
 
     private void sendEvent(Bundle bundle) {
-        task = new callProviderTask(context).execute(bundle);
+        AsyncTask task = new callProviderTask(context).execute(bundle);
     }
 
     private static class callProviderTask extends AsyncTask<Bundle, Void, Void> {
