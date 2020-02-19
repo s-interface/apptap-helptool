@@ -47,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
         long currentTime = System.currentTimeMillis();
         SmaliCodeClass smaliClass = new SmaliCodeClass();
         Bundle bundle = new Bundle();
-        bundle.putString("key_string", "value_string");
-        smaliClass.targetMethod_01("first_string", "second_string", currentTime, bundle, true, true, true, "third_string");
+        bundle.putString("description", "This is a test event");
+        bundle.putString("parameter_key", "parameter_value");
+        smaliClass.targetMethod_01("_test_origin", "test_event", currentTime, bundle, true, true, true, "third_string");
     }
 }

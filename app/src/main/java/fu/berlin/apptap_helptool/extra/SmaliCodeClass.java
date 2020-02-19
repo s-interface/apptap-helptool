@@ -21,7 +21,4 @@ public class SmaliCodeClass {
         AppTapHelper.captureMethodArguments(string1, string2, j_long, bundle, bool1, bool2, bool3, string3);
     }
 
-    public void targetMethod_02(String string1, String string2, long j_long, Bundle bundle, boolean bool1, boolean bool2, boolean bool3, String string3) {
-        AppTapHelper.idMethod(string1, string2, j_long, bundle, "method_name");
-    }
 }
