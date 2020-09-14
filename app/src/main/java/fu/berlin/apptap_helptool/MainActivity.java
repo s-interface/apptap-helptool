@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import fu.berlin.apptap_helptool.extra.SmaliCodeClass;
+import fu.berlin.apptap_helptool.extra.SmaliCodeClazz;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,15 +19,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTestButton = findViewById(R.id.test_button);
+//        mTestButton = findViewById(R.id.test_button);
         mSendEventButton = findViewById(R.id.send_event_button);
 
-        mTestButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, R.string.test_button, Toast.LENGTH_SHORT).show();
-            }
-        });
+//        mTestButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(MainActivity.this, R.string.test_button, Toast.LENGTH_SHORT).show();
+//            }
+//        });
         mSendEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,10 +45,10 @@ public class MainActivity extends AppCompatActivity {
      */
     private void sendEvent() {
         long currentTime = System.currentTimeMillis();
-        SmaliCodeClass smaliClass = new SmaliCodeClass();
+        SmaliCodeClazz smaliClass = new SmaliCodeClazz();
         Bundle bundle = new Bundle();
         bundle.putString("description", "This is a test event");
         bundle.putString("parameter_key", "parameter_value");
-        smaliClass.targetMethod_01("_test_origin", "test_event", currentTime, bundle, true, true, true, "third_string");
+        smaliClass.targetMethod("_test_origin", "test_event", currentTime, bundle, true, true, true, "third_string");
     }
 }

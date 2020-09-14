@@ -42,7 +42,7 @@ public class AppTapHelper {
         }
     }
 
-    public static void captureMethodArguments(String string1, String string2, long j_long, Bundle bundle, boolean bool1, boolean bool2, boolean bool3, String string3) {
+    public static void captureEvent(String string1, String string2, long j_long, Bundle bundle, boolean bool1, boolean bool2, boolean bool3, String string3) {
         Bundle sendBundle = new Bundle();
 
         //adding thread info

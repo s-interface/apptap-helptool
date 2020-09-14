@@ -5,11 +5,12 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="24dp"
-        android:text="@string/main_title_text" />
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:padding="24dp"-->
+<!--        android:text="@string/main_title_text"-->
+<!--        android:textSize="24sp" />-->
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -20,13 +21,14 @@
             android:id="@+id/send_event_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_send_event"
             android:text="@string/send_event_button" />
 
-        <Button
-            android:id="@+id/test_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/test_button" />
+<!--        <Button-->
+<!--            android:id="@+id/test_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/test_button" />-->
 
     </LinearLayout>
 
